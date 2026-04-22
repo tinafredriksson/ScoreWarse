@@ -19,7 +19,7 @@ let gameStarted = false;
 let gameEnded = false;
 let interval = null;
 
-// HTML DOM  // GET YOUR ELEMENTS
+// HTML DOM
 const box = document.getElementById("clickBox");
 const scoreDisplay = document.getElementById("scoreDisplay");
 const button2 = document.getElementById("button2");
@@ -61,7 +61,6 @@ function countdown() {
 
   if (timeleft <= 0) {
     timerDisplay.innerText = 0;
-    finalScore.innerText = "Final score: " + score;
     endGame();
   }
 }
@@ -72,8 +71,11 @@ function startGame() {
 }
 
 function endGame() {
+  if (gameEnded) return;
+
   gameEnded = true;
   clearInterval(interval);
+  finalScore.innerText = "Game over! Final score: " + score;
   input1.style.display = "block";
   label1.style.display = "block";
   box.style.display = "none";
