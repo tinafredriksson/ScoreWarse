@@ -37,6 +37,7 @@ box.addEventListener("click", () => {
 
   if (!gameEnded) {
     increaseScore();
+    moveBoxRandomly();
   }
 });
 
@@ -68,6 +69,19 @@ function countdown() {
 function startGame() {
   interval = setInterval(countdown, 1000);
   gameStarted = true;
+  moveBoxRandomly();
+}
+
+function moveBoxRandomly() {
+  const gameArea = document.getElementById("gameArea");
+  const maxX = gameArea.clientWidth - box.offsetWidth;
+  const maxY = gameArea.clientHeight - box.offsetHeight;
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  box.style.left = randomX + "px";
+  box.style.top = randomY + "px";
 }
 
 function endGame() {
@@ -106,4 +120,3 @@ async function submitHighScore() {
     console.error(error);
   }
 }
-

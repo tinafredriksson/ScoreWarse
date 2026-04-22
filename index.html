@@ -1,63 +1,50 @@
 <!doctype html>
-<html class="no-js" lang="">
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>Score Wars</title>
   <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
-
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
-
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <p>Score Wars- Lets play.</p>
+<h1>Score Wars - Let's play </h1>
 
-  <!-- Spelets clickbox som samlar poängen -->
+<!-- Score & timer -->
+<p>Score: <span id="scoreDisplay">0</span></p>
+<p>Time left: <span id="timerDisplay">60</span></p>
+
+<!-- SPELPLAN -->
+<div id="gameArea">
   <div id="clickBox" role="button" tabindex="0">Press me!</div>
+</div>
 
-  <!-- Visar poäng & tid -->
-  <p id="scoreDisplay">0</p>
-  <p id="timerDisplay">3</p>  <!-- Ändra till 60sek efter testperiod klar -->
+<!-- Resultat -->
+<p id="finalScore"></p>
 
-  <!-- Visar slutpoäng -->
-  <p id="finalScore"></p>
+<!-- Meddelande -->
+<p id="message"></p>
 
+<!-- Namn input -->
+<label id="label1" for="name">Name (4 to 10 characters):</label><br>
 
-  <!-- Ange spelarens namn-->
-  <label id="label1" for="name">Name (4 to 10 characters):</label>
+<input
+  type="text"
+  id="name"
+  name="name"
+  required
+  minlength="4"
+  maxlength="10"
+  size="12" />
 
-  <input
-    type="text"
-    id="name"
-    name="name"
-    required
-    minlength="4"
-    maxlength="10"
-    size="12" />
-  <!-- Visar meddelande -->
-  <p id="message"></p>
+<br>
 
-  <!-- Knapp som visar poängen -->
-  <button id="button2">Submit score</button>
+<!-- Submit -->
+<button id="button2">Submit score</button>
 
-  <!-- Koppling till Javascript -->
-  <script src="js/app.js"></script>
+<!-- JS -->
+<script src="js/app.js"></script>
 
 </body>
-
 </html>

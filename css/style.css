@@ -84,6 +84,70 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 30px;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+#scoreDisplay,
+#timerDisplay,
+#finalScore,
+#message {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+#gameArea {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  margin: 20px auto;
+  border: 3px solid #222;
+  border-radius: 16px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+#clickBox {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  user-select: none;
+}
+
+input {
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#message {
+  font-weight: bold;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
