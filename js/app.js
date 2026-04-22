@@ -82,13 +82,28 @@ function endGame() {
   button2.style.display = "block";
 }
 
-function submitHighScore() {
+async function submitHighScore() {
   const playerName = input1.value.trim();
+
   if (playerName === "") {
     message.innerText = "Please enter your name.";
     return;
   }
 
-  message.innerText = "Score saved successfully!";
+  try {
+    await fetch("https://hooks.zapier.com/hooks/catch/8338993/ujs9jj9/", {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify({
+        name: playerName,
+        score: score
+      })
+    });
+
+    message.innerText = "Score saved successfully!";
+  } catch (error) {
+    message.innerText = "Network error.";
+    console.error(error);
+  }
 }
 
