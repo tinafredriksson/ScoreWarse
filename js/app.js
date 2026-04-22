@@ -1,20 +1,8 @@
-//As a player I want to
-
-// Click a button or object to earn points so that I can increase my score.
-// See my current score during the game so that I know how well I am doing.
-// See a countdown timer so that I know how much time is left.
-// Have the game to end automatically when the time is over (60s) so that the rules are clear and fair.
-// See my final score when the game ends so that I know my result.
-// Enter my name so that my result can be connected to me
-// Submit my score so that it can be saved to the shared scoreboard.
-// Get a message that tells me if my score was saved successfully or not so that I understand what happened.
-// Code is readable and has no major bugs.
-
-// TODO: implementera en box som är klickbar
+// As a player I want to
 
 // Variabler
 let score = 0;
-let timeleft = 3; // Ändra till 60 sek
+let timeleft = 60; // Ändra till 60 sek senare
 let gameStarted = false;
 let gameEnded = false;
 let interval = null;
@@ -24,33 +12,37 @@ const box = document.getElementById("clickBox");
 const scoreDisplay = document.getElementById("scoreDisplay");
 const button2 = document.getElementById("button2");
 const timerDisplay = document.getElementById("timerDisplay");
-const label1 = document.getElementById("label1");
 const input1 = document.getElementById("name");
 const finalScore = document.getElementById("finalScore");
 const message = document.getElementById("message");
+const gameOverPanel = document.getElementById("gameOverPanel");
+const restartButton = document.getElementById("restartButton");
+const fakeBoxes = document.querySelectorAll(".fakeBox");
+// Dölj game over-panelen från början
+gameOverPanel.style.display = "none";
 
 // Event listeners
-box.addEventListener("click", () => {
-  if (!gameStarted) {
-    startGame();
-  }
+ box.addEventListener("click", () => {
+    if (!gameStarted) {
+      startGame();
+    }
 
-  if (!gameEnded) {
-    increaseScore();
-    moveBoxRandomly();
-  }
-});
+    if (!gameEnded) {
+      increaseScore();
+      moveBoxRandomly();
+      moveFakeBoxes();
+    }
+  });
 
 button2.addEventListener("click", () => {
   submitHighScore();
 });
 
-// döljer elementen
-input1.style.display = "none";
-label1.style.display = "none";
-button2.style.display = "none";
+restartButton.addEventListener("click", () => {
+  location.reload();
+});
 
-// Function
+// Funktioner
 function increaseScore() {
   score++;
   scoreDisplay.innerText = score;
@@ -65,11 +57,11 @@ function countdown() {
     endGame();
   }
 }
-
 function startGame() {
   interval = setInterval(countdown, 1000);
   gameStarted = true;
   moveBoxRandomly();
+  moveFakeBoxes();
 }
 
 function moveBoxRandomly() {
@@ -90,10 +82,8 @@ function endGame() {
   gameEnded = true;
   clearInterval(interval);
   finalScore.innerText = "Game over! Final score: " + score;
-  input1.style.display = "block";
-  label1.style.display = "block";
   box.style.display = "none";
-  button2.style.display = "block";
+  gameOverPanel.style.display = "block";
 }
 
 async function submitHighScore() {
@@ -119,4 +109,18 @@ async function submitHighScore() {
     message.innerText = "Network error.";
     console.error(error);
   }
+}
+function moveFakeBoxes() {
+  const gameArea = document.getElementById("gameArea");
+
+  fakeBoxes.forEach((fakeBox) => {
+    const maxX = gameArea.clientWidth - fakeBox.offsetWidth;
+    const maxY = gameArea.clientHeight - fakeBox.offsetHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    fakeBox.style.left = randomX + "px";
+    fakeBox.style.top = randomY + "px";
+  });
 }
