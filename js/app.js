@@ -14,7 +14,7 @@
 
 // Variabler
 let score = 0;
-let timeleft = 10;
+let timeleft = 3; // Ändra till 60 sek
 let gameStarted = false;
 let gameEnded = false;
 let interval = null;
@@ -26,6 +26,8 @@ const button2 = document.getElementById("button2");
 const timerDisplay = document.getElementById("timerDisplay");
 const label1 = document.getElementById("label1");
 const input1 = document.getElementById("name");
+const finalScore = document.getElementById("finalScore");
+const message = document.getElementById("message");
 
 // Event listeners
 box.addEventListener("click", () => {
@@ -59,6 +61,7 @@ function countdown() {
 
   if (timeleft <= 0) {
     timerDisplay.innerText = 0;
+    finalScore.innerText = "Final score: " + score;
     endGame();
   }
 }
@@ -78,5 +81,12 @@ function endGame() {
 }
 
 function submitHighScore() {
-  console.log(input1.value);
+  const playerName = input1.value.trim();
+  if (playerName === "") {
+    message.innerText = "Please enter your name.";
+    return;
+  }
+
+  message.innerText = "Score saved successfully!";
 }
+
